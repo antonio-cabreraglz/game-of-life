@@ -12,6 +12,7 @@ class GameWindow < Gosu::Window
     self.caption = "Game of Life"
     @background_color = Gosu::Color.new(0xffdedede)
     @alive_cell_color = Gosu::Color.new(0xff000000)
+    @dead_cell_color = Gosu::Color.new(0xff676767)
 
 
     @columns = width/10
@@ -35,11 +36,11 @@ class GameWindow < Gosu::Window
               width, @heigth, @background_color,
               0, @heigth, @background_color)
     @game.board.cells.each_value do |cell|
-      color = (@alive_cell_color if cell.is_alive?) || @background_color
+      color = (@alive_cell_color if cell.is_alive?) || @dead_cell_color
       draw_quad(cell.x * @column_width, cell.y * @row_heigth,color,
-                cell.x * @column_width + @column_width, cell.y * @row_heigth,color,
-                cell.x * @column_width + @column_width, cell.y * @row_heigth + @row_heigth, color,
-                cell.x * @column_width, cell.y * @row_heigth + @row_heigth, color)
+                cell.x * @column_width + (@column_width -1), cell.y * @row_heigth,color,
+                cell.x * @column_width + (@column_width -1 ), cell.y * @row_heigth + (@row_heigth - 1), color,
+                cell.x * @column_width, cell.y * @row_heigth + (@row_heigth - 1), color)
 
     end
   end
