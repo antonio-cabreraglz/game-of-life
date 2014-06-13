@@ -5,7 +5,7 @@ require_relative 'game.rb'
 
 
 class GameWindow < Gosu::Window
-  def initialize(heigth = 480, width = 640)
+  def initialize(heigth = 600, width = 800)
     @heigth = heigth
     @width = width
     super width, heigth, false
@@ -15,9 +15,9 @@ class GameWindow < Gosu::Window
     @dead_cell_color = Gosu::Color.new(0xff676767)
 
 
-    @columns = width/10
-    @column_width = @columns
-    @rows = heigth/10
+    @columns = width/20
+    @rows = heigth/20
+    @column_width = width/@columns
     @row_heigth = heigth / @rows
     @board = Board.new(@rows,@columns)
     @game = Game.new(@board)
@@ -37,10 +37,10 @@ class GameWindow < Gosu::Window
               0, @heigth, @background_color)
     @game.board.cells.each_value do |cell|
       color = (@alive_cell_color if cell.is_alive?) || @dead_cell_color
-      draw_quad(cell.x * @column_width, cell.y * @row_heigth,color,
-                cell.x * @column_width + (@column_width -1), cell.y * @row_heigth,color,
-                cell.x * @column_width + (@column_width -1 ), cell.y * @row_heigth + (@row_heigth - 1), color,
-                cell.x * @column_width, cell.y * @row_heigth + (@row_heigth - 1), color)
+       draw_quad( cell.x * @column_width, cell.y * @row_heigth, color,
+                  cell.x * @column_width + (@column_width - 1), cell.y * @row_heigth, color,
+                  cell.x * @column_width + (@column_width - 1), cell.y * @row_heigth + (@row_heigth - 1), color,
+                  cell.x * @column_width, cell.y * @row_heigth + (@row_heigth - 1), color)
 
     end
   end
