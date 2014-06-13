@@ -15,8 +15,8 @@ class GameWindow < Gosu::Window
     @dead_cell_color = Gosu::Color.new(0xff676767)
 
 
-    @columns = width/20
-    @rows = heigth/20
+    @columns = width/40
+    @rows = heigth/40
     @column_width = width/@columns
     @row_heigth = heigth / @rows
     @board = Board.new(@rows,@columns)
