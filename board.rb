@@ -53,8 +53,21 @@ class Board
     neighbour = self.cells[[cell.x - 1, cell.y + 1]]
     neighbours << neighbour if neighbour && neighbour.is_alive?
 
-
     neighbours
+  end
+
+  def live_cells
+    result = []
+    cells.each_value do |cell|
+      result << cell if cell.is_alive?
+    end
+    result
+  end
+
+  def randomly_populate!
+    cells.each_value do |cell|
+      cell.live! if [true, false].sample
+    end
   end
 
 end

@@ -19,6 +19,8 @@ describe "Game of Life" do
       expect(subject).to respond_to(:columns)
       expect(subject).to respond_to(:cells)
       expect(subject).to respond_to(:neighbours_around_cell).with(1).argument
+      expect(subject).to respond_to(:randomly_populate!)
+      expect(subject).to respond_to(:live_cells)
     end
 
     it "should create a proper grid" do
@@ -29,6 +31,12 @@ describe "Game of Life" do
           expect(subject.cells[[column,row]]).to be_a(Cell)
         end
       end
+    end
+
+    it "should randomly populate the board" do
+      expect(subject.live_cells.count).to be 0
+      subject.randomly_populate!
+      expect(subject.live_cells.count).not_to be 0
     end
 
     it "should detect a neighbour to the North" do
