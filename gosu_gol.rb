@@ -13,6 +13,7 @@ class GameWindow < Gosu::Window
     @background_color = Gosu::Color.new(0xffdedede)
     @cell_color = Gosu::Color.new(0xff000000)
 
+
     @columns = width/10
     @column_width = @columns
     @rows = heigth/10
@@ -25,6 +26,7 @@ class GameWindow < Gosu::Window
   end
 
   def update
+    @game.tick!
   end
 
   def draw
