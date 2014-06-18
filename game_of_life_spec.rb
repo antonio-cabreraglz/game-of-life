@@ -1,7 +1,11 @@
 require 'rspec'
+require 'simplecov'
+SimpleCov.start
 require_relative 'cell.rb'
 require_relative 'board.rb'
 require_relative 'game.rb'
+
+
 
 
 describe "Game of Life" do
